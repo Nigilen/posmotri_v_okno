@@ -9,7 +9,7 @@ html {
 }
 
 .page {
-  display: flex; /* для центрирования content */
+  display: grid; /* для центрирования content */
   align-items: center;
 
   margin: auto;
@@ -61,15 +61,6 @@ ol {
 }
 
 
-/* ПРЕЛОАДЕР */
-
-.preloader {
-  inset: 0;
-  block-size: 100%;
-  inline-size: 100%;
-}
-
-
 /* СЕТКА */
 
 .content {
@@ -77,7 +68,7 @@ ol {
   grid-template-columns: 711px 399px;
   align-items: end;
   column-gap: 30px;
-  padding: 0 30px;
+  padding-inline: 30px;
 }
 
 
@@ -87,13 +78,14 @@ ol {
 .result__video-container {
   position: relative;
   margin-bottom: 16px;
+  block-size: 386px;
 }
 
 .result__video {
   object-fit: cover;
   object-position: center;
   inline-size: 100%;
-  block-size: 386px;
+  block-size: 100%;
 }
 
 
@@ -115,7 +107,7 @@ ol {
 
 /* В следующем правиле наткнулся на то, что при подстановке sans-serif увеличивались пробелы между словами и подставлялась не та запятая, которая должна была быть согласно макету. Как итог, просиходило заметное перекрытие контента правым паддингом. В итоге, я отыскал и подключил более полноценный файл шрифта Fira Sans Condensed и заменил его (файл MyFiraSansCondensed-Regular.woff2). Bold не менял - лень =)  */
 .search-form__textfield {
-  border: 1px solid #fff;
+  border-block: 1px solid #fff;
   border-right: none;
   border-left: none;
   padding: 2.5px 14px 2.5px 0;
@@ -145,27 +137,24 @@ ol {
   outline-offset: 2px;
 }
 
-/* Согласно макету, в активном состоянии у поля пропадают рамки фокуса и появляются боковые границы. Так как границы будут двигать контент, решено было сделать реализацию путем изменение стиля фокуса через наличие активного состояния у поля и визуальное скрытие верхних и нижних границ у поля посредством задания им прозрачности.  */
-
-.search-form__label:has(.search-form__textfield:active) {
-  outline-offset: 0px;
-}
-
 .search-form__textfield:active {
-  border-color: transparent;
+  border: 1px solid #fff;
 }
+
 
 
 .search-form__checkbox-list {
   display: flex;
   justify-content: space-between;
   inline-size: 212px;
+  gap: 15px;
 }
 
 
 .search-form__pseudo-checkbox {
-  display: inline-block;
-  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #fff;
   inline-size: 21px;
   block-size: 21px;
@@ -176,30 +165,29 @@ ol {
   display: block;
   inline-size: 15px;
   block-size: 15px;
-  margin: 2px;
   background-color: #fff;
 }
 
-.search-form__checkbox-list .search-form__label:hover {
+.search-form__label:hover .search-form__label-text {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .search-form__label {
   display: inline-flex;
+  gap: 5px;
   align-items: center;
   width: fit-content;
+  cursor: pointer;
 }
 
 .button {
   border: 1px solid #fff;
-  padding-top: 6px;
-  padding-bottom: 6px;
   color: inherit;
   font: inherit;
   font-weight: 700;
   background-color: transparent;
   cursor: pointer;
+  block-size: 34px;
 }
 
 .button:focus {
@@ -221,13 +209,11 @@ ol {
 
 .more-button {
   inline-size: 100%;
-  block-size: 34px;
 }
 
 .search-form__submit-button {
   align-self: flex-end;
-  padding-right: 73.5px;
-  padding-left: 73.5px;
+  inline-size: 194px;
 }
 
 
@@ -237,16 +223,16 @@ ol {
   display: grid;
   align-content: space-between;
   block-size: 100%;
+  gap: 28px;
 }
 
 .title {
-  margin-bottom: 28px;
   color: inherit;
   font-family: 'Oswald', Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 75px;
   font-style: normal;
-  line-height: 94%;
+  line-height: 0.94;
   text-transform: uppercase;
 }
 
@@ -267,8 +253,9 @@ ol {
   margin: 2px;
   color: inherit;
   font: inherit;
-  line-height: 90%;
+  line-height: 0.9;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .content__card-link:focus {
@@ -280,11 +267,11 @@ ol {
 }
 
 
-.content__list-item:active {
+.content__card-link:active {
   background-color: #545050;
 }
 
-.content__list-item:hover {
+.content__card-link:hover {
   text-decoration: underline;
 }
 
@@ -304,12 +291,13 @@ ol {
   font-family: 'Oswald', Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 30px;
-  line-height: 100%; 
+  line-height: 1; 
   text-transform: uppercase;
 }
 
 .content__video-card-description {
   font-weight: 400;
+  line-height: 0.9;
 }
 
 .content__video-card-thumbnail {
