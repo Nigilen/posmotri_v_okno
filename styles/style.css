@@ -9,13 +9,20 @@ html {
 }
 
 .page {
-  inline-size: 1200px;
-  block-size: 100%;
+  display: flex; /* для центрирования content */
+  align-items: center;
+
   margin: auto;
   color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: 'Fira Sans Condensed', Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 18px;
-  background-color: #1b1919;
+  font-style: normal;
+  line-height: normal;
+  background-color: #1b1919; 
+
+  inline-size: 1200px;
+  block-size: 100%;
 }
 
 h1,
@@ -35,4 +42,281 @@ fieldset {
 ul,
 ol {
   list-style: none;
+}
+
+
+/* ↓↓↓ СТИЛИ СТУДЕНТА ↓↓↓ */
+
+
+/* ВСПОМОГАТЕЛЬНЫЕ СТИЛИ */
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  inline-size: 1px;
+  block-size: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+/* ПРЕЛОАДЕР */
+
+.preloader {
+  position: absolute;
+  inset: 0;
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+
+/* СЕТКА */
+
+.content {
+  display: grid;
+  grid-template-columns: 711px 399px;
+  align-items: end;
+  column-gap: 30px;
+  padding: 0 30px;
+}
+
+
+/* ВИДЕО-ПЛЕЕР */
+
+
+.result__video-container {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.result__video {
+  object-fit: cover;
+  object-position: center;
+  inline-size: 100%;
+  block-size: 386px;
+}
+
+
+/* ФОРМА ПОИСКА */
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-form__fieldset {
+  border: none;
+}
+
+.search-form__fieldset-title {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+/* В следующем правиле наткнулся на то, что при подстановке sans-serif увеличивались пробелы между словами и подставлялась не та запятая, которая должна была быть согласно макету. Как итог, просиходило заметное перекрытие контента правым паддингом. В итоге, я отыскал и подключил более полноценный файл шрифта Fira Sans Condensed и заменил его (файл MyFiraSansCondensed-Regular.woff2). Bold не менял - лень =)  */
+.search-form__textfield {
+  border: 1px solid #fff;
+  border-right: none;
+  border-left: none;
+  padding: 2.5px 14px 2.5px 0;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  inline-size: 225px;
+  appearance: none;
+}
+
+/* В теории об этом не указано, как и в макете. Но логика подсказывает, что плейсхолдер должен отличаться от вводимого значения (обычно цветом)*/
+.search-form__textfield::placeholder {
+  color: rgba(255, 255, 255, 0.70);
+}
+
+
+.search-form__textfield:hover {
+  cursor: text;
+}
+
+.search-form__textfield:focus {
+  outline: none;
+}
+
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Согласно макету, в активном состоянии у поля пропадают рамки фокуса и появляются боковые границы. Так как границы будут двигать контент, решено было сделать реализацию путем изменение стиля фокуса через наличие активного состояния у поля и визуальное скрытие верхних и нижних границ у поля посредством задания им прозрачности.  */
+
+.search-form__label:has(.search-form__textfield:active) {
+  outline-offset: 0px;
+}
+
+.search-form__textfield:active {
+  border-color: transparent;
+}
+
+
+.search-form__checkbox-list {
+  display: flex;
+  justify-content: space-between;
+  inline-size: 212px;
+}
+
+
+.search-form__pseudo-checkbox {
+  position: relative;
+  display: inline-block;
+  margin-right: 5px;
+  border: 1px solid #fff;
+  inline-size: 21px;
+  block-size: 21px;
+}
+
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after  {
+  content: "";
+  position: absolute;
+  inset: 2px 0 0 2px;
+  inline-size: 15px;
+  block-size: 15px;
+  background-color: #fff;
+}
+
+.search-form__checkbox-list .search-form__label:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search-form__label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.button {
+  border: 1px solid #fff;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 2px;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button:active {
+  background-color: #545050;
+}
+
+.more-button {
+  inline-size: 100%;
+  block-size: 34px;
+}
+
+.search-form__submit-button {
+  align-self: flex-end;
+  padding-right: 73.5px;
+  padding-left: 73.5px;
+}
+
+
+/* РЕЗУЛЬТАТ ПОИСКА */
+
+.content__details {
+  display: grid;
+  align-content: space-between;
+  block-size: 100%;
+}
+
+.title {
+  margin-bottom: 28px;
+  color: inherit;
+  font-family: 'Oswald', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 75px;
+  font-style: normal;
+  line-height: 94%;
+  text-transform: uppercase;
+}
+
+.content__accent {
+  color: #545050;
+}
+
+.content__list {
+  position: relative;
+  display: grid;
+  row-gap: 30px;
+  height: 298px;
+  overflow-y: auto;
+}
+
+.content__card-link {
+  display: block;
+  margin: 2px;
+  color: inherit;
+  font: inherit;
+  line-height: 90%;
+  text-decoration: none;
+}
+
+.content__card-link:focus {
+  outline: none;
+}
+
+.content__card-link:focus-visible {
+  outline: 1px solid #fff;
+}
+
+
+.content__list-item:active {
+  background-color: #545050;
+}
+
+.content__list-item:hover {
+  text-decoration: underline;
+}
+
+.content__card-link_current {
+  background-color: #545050;
+}
+
+.content__video-card {
+  display: grid;
+  grid-template-columns: 1fr 190px;
+  padding: 2px;
+}
+
+.content__video-card-title {
+  margin-bottom: 6px;
+  color: #fff;
+  font-family: 'Oswald', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 100%; 
+  text-transform: uppercase;
+}
+
+.content__video-card-description {
+  font-weight: 400;
+}
+
+.content__video-card-thumbnail {
+  inline-size: 100%;
+  block-size: 103px;
+  object-fit: cover;
+  object-position: center;
 }
