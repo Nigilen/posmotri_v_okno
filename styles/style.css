@@ -64,7 +64,6 @@ ol {
 /* ПРЕЛОАДЕР */
 
 .preloader {
-  position: absolute;
   inset: 0;
   block-size: 100%;
   inline-size: 100%;
@@ -165,7 +164,6 @@ ol {
 
 
 .search-form__pseudo-checkbox {
-  position: relative;
   display: inline-block;
   margin-right: 5px;
   border: 1px solid #fff;
@@ -174,11 +172,11 @@ ol {
 }
 
 .search-form__checkbox:checked + .search-form__pseudo-checkbox::after  {
-  content: "";
-  position: absolute;
-  inset: 2px 0 0 2px;
+  content: " ";
+  display: block;
   inline-size: 15px;
   block-size: 15px;
+  margin: 2px;
   background-color: #fff;
 }
 
