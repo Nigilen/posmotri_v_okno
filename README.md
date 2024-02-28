@@ -2,4 +2,4 @@
 
 Стек: HTML, CSS
 
-https://github.com/Nigilen/posmotri_v_okno
+ссылка: https://github.com/Nigilen/posmotri_v_okno
